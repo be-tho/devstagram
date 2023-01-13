@@ -53,6 +53,39 @@
 					>
 				</form>
 				@endauth
+				<div class="bg-white shadow mg-5 mx-h-96 overflow-y-scroll mt-10">
+					<div class="p-3 border-b border-gray-200">
+						<p class="font-bold">Comentarios</p>
+					</div>
+					@if( $post->comentarios->count() )
+						@foreach( $post->comentarios as $comentario )
+							<div class="p-5 border-gray-300 border-b">
+								<div class="mb-2 text-xl text-gray-700">
+									<p>
+										{{ $comentario->comentario }}
+									</p>
+								</div>
+								<div class="flex items-center">
+									<div>
+										<p class="text-sm font-medium text-gray-900">
+{{--											comentarios con un link que te lleve a su muro--}}
+											<a href="{{ route('dashboard.index', $comentario->user) }}" class="font-bold hover:text-gray-600">
+												{{ $comentario->user->username }}
+											</a>
+										</p>
+										<div class="mt-1">
+											<p class="text-sm text-gray-500">
+												{{ $comentario->created_at->diffForHumans() }}
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						@endforeach
+					@else
+						<p class="text-center text-gray-500 font-bold py-5">No hay comentarios</p>
+					@endif
+				</div>
 			</div>
 		</div>
 	</div>
