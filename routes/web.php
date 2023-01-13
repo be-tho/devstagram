@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LoginController;
@@ -33,6 +34,11 @@ Route::get('/muro/{user:username}', [PostController::class, 'index'])->name('das
 Route::get('/posts/create', [PostController::class, 'create'])->name('posts.create')->middleware('auth');
 Route::post('/posts', [PostController::class, 'store'])->name('posts.store')->middleware('auth');
 Route::get('/{user:username}/posts/{post}', [PostController::class, 'show'])->name('posts.show');
+
+//comentarios
+Route::post('/{user:username}/posts/{post}', [ComentarioController::class, 'store'])->name('comentarios.store');
+
+
 
 //imagenes
 Route::post('/images', [ImagenController::class, 'store'])->name('images.store')->middleware('auth');
