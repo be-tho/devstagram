@@ -3,7 +3,7 @@
 	{{ $post->titulo }}
 @endsection
 @section('content')
-	<div class="container mx-auto flex">
+	<div class="container mx-auto md:flex">
 		<div class="md:w-1/2">
 			<img src="{{ asset('uploads') . '/' . $post->imagen }}" alt="Imagen del post {{$post->titulo}}">
 			<div class="p-3">
@@ -21,8 +21,17 @@
 		</div>
 		<div class="md:w-1/2 px-5 pb-5">
 			<div class="shadow bg-white p-5 mb-5">
+				@auth
 				<p class="text-xl font-bold text-center mb-4">Agrega un Nuevo Comentario</p>
-				<form action="">
+				@if(session('success'))
+					<div class="bg-green-100 border border-green-400 text-green-700 px-4 py-3 rounded relative" role="alert">
+						<strong class="font-bold">¡Genial!</strong>
+						<span class="block sm:inline">{{ session('success') }}</span>
+					</div>
+				@endif
+				<form action="{{ route('comentarios.store', ['user' => $user , 'post' => $post]) }}" method="post">
+					@csrf
+					@method('POST')
 					<div class="mb-3">
 						<label for="comentario" class="mb-2 block uppercase text-gray-500 font-bold">
 							Comentario
@@ -43,6 +52,40 @@
 						class="w-full bg-sky-600 hover:bg-sky-700 text-white font-bold py-3 px-4 rounded-lg transition-colors duration-300 cursor-pointer uppercase"
 					>
 				</form>
+				@endauth
+				<div class="bg-white shadow mg-5 mx-h-96 overflow-y-scroll mt-10">
+					<div class="p-3 border-b border-gray-200">
+						<p class="font-bold">Comentarios</p>
+					</div>
+					@if( $post->comentarios->count() )
+						@foreach( $post->comentarios as $comentario )
+							<div class="p-5 border-gray-300 border-b">
+								<div class="mb-2 text-xl text-gray-700">
+									<p>
+										{{ $comentario->comentario }}
+									</p>
+								</div>
+								<div class="flex items-center">
+									<div>
+										<p class="text-sm font-medium text-gray-900">
+{{--											comentarios con un link que te lleve a su muro--}}
+											<a href="{{ route('dashboard.index', $comentario->user) }}" class="font-bold hover:text-gray-600">
+												{{ $comentario->user->username }}
+											</a>
+										</p>
+										<div class="mt-1">
+											<p class="text-sm text-gray-500">
+												{{ $comentario->created_at->diffForHumans() }}
+											</p>
+										</div>
+									</div>
+								</div>
+							</div>
+						@endforeach
+					@else
+						<p class="text-center text-gray-500 font-bold py-5">No hay comentarios</p>
+					@endif
+				</div>
 			</div>
 		</div>
 	</div>
