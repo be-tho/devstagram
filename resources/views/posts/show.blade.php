@@ -18,6 +18,19 @@
 					{{ $post->descripcion }}
 				</p>
 			</div>
+			@auth()
+				@if($post->user_id === auth()->user()->id)
+				<form action="{{ route('posts.destroy', $post) }}" method="post">
+					@csrf
+					@method('DELETE')
+					<input
+						type="submit"
+						value="Eliminar Publicación"
+						class="bg-red-500 hover:bg-red-600 text-white font-bold py-2 mt-4 px-4 rounded-lg transition-colors duration-300 cursor-pointer uppercase"
+					/>
+				</form>
+					@endif
+			@endauth
 		</div>
 		<div class="md:w-1/2 px-5 pb-5">
 			<div class="shadow bg-white p-5 mb-5">
@@ -68,7 +81,6 @@
 								<div class="flex items-center">
 									<div>
 										<p class="text-sm font-medium text-gray-900">
-{{--											comentarios con un link que te lleve a su muro--}}
 											<a href="{{ route('dashboard.index', $comentario->user) }}" class="font-bold hover:text-gray-600">
 												{{ $comentario->user->username }}
 											</a>
