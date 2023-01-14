@@ -7,6 +7,7 @@ use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
+use App\Http\Controllers\PerfilController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,8 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/crear-cuenta', [AuthController::class, 'index'])->name('auth.index');
 Route::post('/register', [AuthController::class, 'store'])->name('auth.store');
+
+
 
 //login
 Route::get('/login', [LoginController::class, 'index'])->name('login.index');
@@ -47,5 +50,9 @@ Route::post('/images', [ImagenController::class, 'store'])->name('images.store')
 //like a las fotos
 Route::post('/posts/{post}/like', [LikeController::class, 'store'])->name('posts.like.store')->middleware('auth');
 Route::delete('/posts/{post}/like', [LikeController::class, 'destroy'])->name('posts.like.destroy')->middleware('auth');
+
+//rutas perfil
+Route::get('/editar-perfil', [PerfilController::class, 'index'])->name('perfil.index')->middleware('auth');
+Route::post('/editar-perfil', [PerfilController::class, 'store'])->name('perfil.store');
 
 
