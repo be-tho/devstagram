@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ComentarioController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImagenController;
+use App\Http\Controllers\LikeController;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\LogoutController;
 use App\Http\Controllers\PostController;
@@ -40,9 +41,11 @@ Route::delete('/posts/{post}', [PostController::class, 'destroy'])->name('posts.
 Route::post('/{user:username}/posts/{post}', [ComentarioController::class, 'store'])->name('comentarios.store');
 //borrar comentario
 
-
-
 //imagenes
 Route::post('/images', [ImagenController::class, 'store'])->name('images.store')->middleware('auth');
+
+//like a las fotos
+Route::post('/posts/{post}/like', [LikeController::class, 'store'])->name('posts.like.store')->middleware('auth');
+Route::delete('/posts/{post}/like', [LikeController::class, 'destroy'])->name('posts.like.destroy')->middleware('auth');
 
 
