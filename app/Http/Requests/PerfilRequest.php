@@ -26,7 +26,7 @@ class PerfilRequest extends FormRequest
 	  return [
 		 'username' => 'unique:users,username,' . auth()->user()->id, 'regex:/^[a-z0-9]+(?:-[a-z0-9]+)*$/|not_in:twitter,facebook,instagram,editar-perfil|min:3|max:20',
 		 'imagen' => 'image|mimes:jpeg,png,jpg,gif,svg,webp|max:2048',
-		 'email' => 'email|unique:users,email,' . auth()->user()->email,
+		 'email' => 'email|unique:users,email,' . auth()->user()->id,
 	  ];
    }
    
