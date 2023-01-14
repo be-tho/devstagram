@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ComentarioController;
+use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ImagenController;
 use App\Http\Controllers\LikeController;
@@ -54,5 +55,9 @@ Route::delete('/posts/{post}/like', [LikeController::class, 'destroy'])->name('p
 //rutas perfil
 Route::get('/editar-perfil', [PerfilController::class, 'index'])->name('perfil.index')->middleware('auth');
 Route::post('/editar-perfil', [PerfilController::class, 'store'])->name('perfil.store');
+
+//siguiendo usuarios
+Route::post('/{user:username}/follow', [FollowerController::class, 'store'])->name('users.follow')->middleware('auth');
+Route::delete('/{user:username}/unfollow', [FollowerController::class, 'destroy'])->name('users.unfollow')->middleware('auth');
 
 
