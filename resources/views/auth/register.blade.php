@@ -13,7 +13,7 @@
 				@method('POST')
 				@csrf
 				<div class="mb-3">
-					<label for="name" id="name" class="mb-2 block uppercase text-gray-500 font-bold">
+					<label for="name"  class="mb-2 block uppercase text-gray-500 font-bold">
 						Nombre
 					</label>
 					<input type="text" name="name" id="name" class="w-full border-2 border-gray-200 p-3 rounded-lg mb-3 @error('name') border-red-500 @enderror" value="{{old('name')}}" placeholder="Tu Nombre">
@@ -27,7 +27,7 @@
 					@enderror
 				</div>
 				<div class="mb-3">
-					<label for="username" id="username" class="mb-2 block uppercase text-gray-500 font-bold">
+					<label for="username"  class="mb-2 block uppercase text-gray-500 font-bold">
 						Nombre de Usuario
 					</label>
 					<input type="text" name="username" id="username" class="w-full border-2 border-gray-200 p-3 rounded-lg mb-3 @error('username') border-red-500 @enderror" value="{{old('username')}}" placeholder="Tu Usuario">
@@ -41,7 +41,7 @@
 					@enderror
 				</div>
 				<div class="mb-3">
-					<label for="email" id="email" class="mb-2 block uppercase text-gray-500 font-bold">
+					<label for="email" class="mb-2 block uppercase text-gray-500 font-bold">
 						Email
 					</label>
 					<input type="email" name="email" id="email" class="w-full border-2 border-gray-200 p-3 rounded-lg mb-3 @error('email') border-red-500 @enderror" value="{{old('email')}}" placeholder="Email">
@@ -55,7 +55,7 @@
 					@enderror
 				</div>
 				<div class="mb-3">
-					<label for="password" id="password" class="mb-2 block uppercase text-gray-500 font-bold">
+					<label for="password" class="mb-2 block uppercase text-gray-500 font-bold">
 						Password
 					</label>
 					<input type="password" name="password" id="password" class="w-full border-2 border-gray-200 p-3 rounded-lg mb-3 @error('password') border-red-500 @enderror" placeholder="Password de Registro">
@@ -69,7 +69,7 @@
 					@enderror
 				</div>
 				<div class="mb-3">
-					<label for="password_confirmation" id="password_confirmation" class="mb-2 block uppercase text-gray-500 font-bold">
+					<label for="password_confirmation" class="mb-2 block uppercase text-gray-500 font-bold">
 						Repetir Password
 					</label>
 					<input type="password" name="password_confirmation" id="password_confirmation" class="w-full border-2 border-gray-200 p-3 rounded-lg mb-5" placeholder="Repetir Password">
