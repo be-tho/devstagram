@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+//crear ruta 404
 Route::get('/', [HomeController::class, 'index'])->name('home.index');
 Route::get('/crear-cuenta', [AuthController::class, 'index'])->name('auth.index');
 Route::post('/register', [AuthController::class, 'store'])->name('auth.store');
