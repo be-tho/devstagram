@@ -13,7 +13,7 @@ class PostController extends Controller
    public function index(User $user)
    {
 	  //traer los posts del usuario
-	  $posts = Post::where('user_id', $user->id)->paginate(8);
+	  $posts = Post::where('user_id', $user->id)->latest()->paginate(8);
 	  
 	  return view('sections.dashboard', [
 		 'user' => $user,

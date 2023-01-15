@@ -1,6 +1,17 @@
 @extends('layouts.app')
 @section('titulo', 'Home')
 @section('content')
-	<h1 class="text-4xl text-blue-900">Titulo de ejemplo Home</h1>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad animi corporis eligendi ex facere fuga id illum laboriosam, maxime modi praesentium provident quae qui, repellendus sit suscipit veniam veritatis voluptatibus.</p>
+	@if($posts->count())
+		<div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+			@foreach($posts as $post)
+				<div>
+					<a href="{{ route('posts.show', ['post' => $post, 'user' => $post->user]) }}">
+						<img src="{{asset('uploads' . '/' . $post->imagen)}}" alt="Imagen del post {{ $post->titulo }}">
+					</a>
+				</div>
+			@endforeach
+		</div>
+	@else
+		<p class="text-center">No hay posts, sigue a alguien para mostrar sus post</p>
+	@endif
 @endsection
