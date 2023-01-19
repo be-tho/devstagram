@@ -9,6 +9,9 @@ class HomeController extends Controller
 {
    public function index()
    {
+	  if(!auth()->check()){
+		 return redirect()->route('login.index');
+	  }
 	  $ids = auth()->user()->followings->pluck('id')->toArray();
 	  $posts = Post::whereIn('user_id', $ids)->with('user')->latest()->paginate(5);
 	  return view('sections.home', [
